@@ -8,13 +8,14 @@
 node hello.js
 ```
 
-** To install npm dependencies run **
+**To install npm dependencies run**
 
 ```
 npm install
 ```
 
-** To install cypress **
+**To run test Use**
+``` 
+npx cypress open 
 ```
-npm install cypress --save-dev
-```
+
