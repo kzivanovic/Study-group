@@ -1,6 +1,7 @@
 describe('Test cases for W&Co', () => {
   it('Go to work.co and check headline', () => {
     cy.visit('https://www.work.co')
+    cy.title().should('eq','Work & Co | Digital Product Agency')
     cy.get('[data-test-id="header-title-text"]').should('have.text','We design and ship digital products that transform companies.')
 
     })
