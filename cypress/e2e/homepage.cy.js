@@ -33,8 +33,8 @@ describe('Test cases for W&Co', () => {
   })
   it('Check Disclaimer',()=>{
     cy.get('.Subscribe-gdprDisclaimer').should('contain','We only send emails when we have something to say.')
-    cy.get('a').contains('Privacy Policy').click()
-    cy.get('a').contains('Terms').click()
+    cy.get('span').contains('Privacy Policy').parent().should('have.attr','href','https://mailchimp.com/legal/privacy/')
+    cy.get('span').contains('Terms').parent().should('have.attr','href','https://mailchimp.com/legal/terms/')
     cy.get('[data-test-id="global-menu-btn"]').click()
 
 
@@ -48,9 +48,11 @@ describe('Test cases for W&Co', () => {
   it('Apply for a role',()=>{
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-first_name-text"]').click().type('Katarina')
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-last_name-text"]').click().type('Barjaktarovic')
-    cy.get('[data-test-id="form-technology-belgrade-lead-developer-email-email"]').click().type('zivanovic@work.co')
-    cy.get('[data-test-id="form-technology-belgrade-lead-developer-phone-tel"]').click().type('+381691747959')
+    cy.get('[data-test-id="form-technology-belgrade-lead-developer-email-email"]').click().type('test@test.com')
+    cy.get('[data-test-id="form-technology-belgrade-lead-developer-phone-tel"]').click().type('*******')
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-question_36310376-text"]').click().type('https://www.linkedin.com/in/katarina-zivanovic-aa06143a/')
+    cy.get('.SubmitButton').should('be.enabled')
+    cy.get('[data-test-id="global-menu-btn"]').click()
   })
 
 })
