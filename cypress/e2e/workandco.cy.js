@@ -1,7 +1,6 @@
 describe('Test cases for W&Co', () => {
-  
+
   it('Go to work.co and check headline', () => {
-    // cy.viewport('macbook-15')
     cy.visit('https://www.work.co')
     cy.title().should('eq','Work & Co | Digital Product Agency')
     cy.get('[data-test-id="header-title-text"]').should('have.text','We design and ship digital products that transform companies.')
@@ -11,6 +10,7 @@ describe('Test cases for W&Co', () => {
     cy.get('[data-test-id="global-menu-btn"]').click()
     cy.url().should('eq', 'https://work.co/grid/');
   })
+
 
   it('Expertise & Capabilities',()=>{
     cy.get('data-test-id="grid-expertise-capabilities-link"').click()
@@ -38,8 +38,6 @@ describe('Test cases for W&Co', () => {
     cy.get('span').contains('Privacy Policy').parent().should('have.attr','href','https://mailchimp.com/legal/privacy/')
     cy.get('span').contains('Terms').parent().should('have.attr','href','https://mailchimp.com/legal/terms/')
     cy.get('[data-test-id="global-menu-btn"]').click()
-
-
   })
 
   it('Choose Belgarde lead position',()=>{
@@ -47,6 +45,7 @@ describe('Test cases for W&Co', () => {
     cy.get('[data-test-id="grid-item-technology-link"]').click()
     cy.get('[data-test-id="technology-grid-subitem-link-lead-developer-belgrade"]').click()
   })
+
   it('Apply for a role Belgrade',()=>{
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-first_name-text"]').click().type('Katarina')
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-last_name-text"]').click().type('Barjaktarovic')
@@ -57,13 +56,12 @@ describe('Test cases for W&Co', () => {
     cy.get('[data-test-id="global-menu-btn"]').click()
   })
 
+
 it('Open global form',()=>{
   cy.get('[data-test-id="grid-careers-link"]').click()
   cy.get('.Breadcrumbs-arrow').click()
   cy.get('[data-test-id="grid-item-technology-link"]').click()
   cy.get('a').should('have.class', 'Link Markdown-link').contains('submit your application').click({force:true})
-
-
 })
 it.only('Submit Global Form',()=>{
   cy.visit('https://work.co/careers/operations/global-studio/general-application/')
