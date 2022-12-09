@@ -39,7 +39,6 @@ describe('Swag Labs tests',()=>{
     })
 
 
-it('Removing items from bag',()=>{
      it('Removing items from bag',()=>{
         cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
         cy.get('.shopping_cart_badge').should('be.visible')
@@ -54,5 +53,5 @@ it('Removing items from bag',()=>{
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
         cy.get('.shopping_cart_badge').should('have.text','1')
       }) 
-  })
+  
 }) 
