@@ -1,4 +1,5 @@
 describe('Test cases for W&Co', () => {
+
   it('Go to work.co and check headline', () => {
     cy.visit('https://www.work.co')
     cy.title().should('eq','Work & Co | Digital Product Agency')
@@ -10,8 +11,9 @@ describe('Test cases for W&Co', () => {
     cy.url().should('eq', 'https://work.co/grid/');
   })
 
-  it('Select Clients',()=>{
-    cy.get('[data-test-id="grid-select-clients-link"]').click()
+
+  it('Expertise & Capabilities',()=>{
+    cy.get('data-test-id="grid-expertise-capabilities-link"').click()
     cy.url().should('eq', 'https://work.co/clients/');
   })
   
@@ -36,8 +38,6 @@ describe('Test cases for W&Co', () => {
     cy.get('span').contains('Privacy Policy').parent().should('have.attr','href','https://mailchimp.com/legal/privacy/')
     cy.get('span').contains('Terms').parent().should('have.attr','href','https://mailchimp.com/legal/terms/')
     cy.get('[data-test-id="global-menu-btn"]').click()
-
-
   })
 
   it('Choose Belgarde lead position',()=>{
@@ -45,7 +45,8 @@ describe('Test cases for W&Co', () => {
     cy.get('[data-test-id="grid-item-technology-link"]').click()
     cy.get('[data-test-id="technology-grid-subitem-link-lead-developer-belgrade"]').click()
   })
-  it('Apply for a role',()=>{
+
+  it('Apply for a role Belgrade',()=>{
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-first_name-text"]').click().type('Katarina')
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-last_name-text"]').click().type('Barjaktarovic')
     cy.get('[data-test-id="form-technology-belgrade-lead-developer-email-email"]').click().type('test@test.com')
@@ -54,5 +55,22 @@ describe('Test cases for W&Co', () => {
     cy.get('.SubmitButton').should('be.enabled')
     cy.get('[data-test-id="global-menu-btn"]').click()
   })
+
+
+it('Open global form',()=>{
+  cy.get('[data-test-id="grid-careers-link"]').click()
+  cy.get('.Breadcrumbs-arrow').click()
+  cy.get('[data-test-id="grid-item-technology-link"]').click()
+  cy.get('a').should('have.class', 'Link Markdown-link').contains('submit your application').click({force:true})
+})
+it.only('Submit Global Form',()=>{
+  cy.visit('https://work.co/careers/operations/global-studio/general-application/')
+  cy.get('[data-test-id="form-operations-global-studio-general-application-first_name-text"]').click().type('Katarina')
+  cy.get('[data-test-id="form-operations-global-studio-general-application-last_name-text"]').click().type('Zivanovic')
+  cy.get('[data-test-id="form-operations-global-studio-general-application-file"]').first().attachFile('dummy.pdf')
+  cy.get('.FormFileInputField-label--hasValue').first().should('contain',('dummy.pdf'))
+  cy.get('[data-test-id="form-operations-global-studio-general-application-file"]').eq(1).selectFile('cypress/fixtures/dummy.pdf',{force:true})
+  cy.get('.FormFileInputField-label--hasValue').eq(1).should('contain',('dummy.pdf'))
+})
 
 })
