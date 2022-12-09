@@ -1,14 +1,15 @@
-describe('Error with no data',()=>{
+describe('Swag Labs tests',()=>{
+  beforeEach(()=>{
+    cy.login('standard_user','secret_sauce')
+  })
     it('Error wih no data',()=>{
         cy.login('standard_user','secret_sauce')
         cy.get('.shopping_cart_link').click()
         cy.get('[data-test="checkout"]').click()
         cy.get('[data-test="continue"]').click()
         cy.get('.error-message-container').should('have.text','Error: First Name is required');
-    })
-})
+    })    
 
-describe('Successful shopping flow',()=>{
     it('Successful shopping flow',()=>{
         cy.login('standard_user','secret_sauce')  
         cy.get('#shopping_cart_container').click()
@@ -38,24 +39,17 @@ describe('Successful shopping flow',()=>{
         cy.get('.shopping_cart_badge').should('not.exist')
 
     })
-})
 
-describe('Removing items from bag',()=>{
-    before(() => {
-        cy.login('standard_user', 'secret_sauce')
-      })
-      it('Removing items from bag',()=>{
+
+it('Removing items from bag',()=>{
+     it('Removing items from bag',()=>{
         cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
         cy.get('.shopping_cart_badge').should('be.visible')
         cy.get('.shopping_cart_link').click()
         cy.get('[data-test="remove-sauce-labs-backpack"]').click()
         cy.get('.shopping_cart_badge').should('not.exist')
       })
-})
-describe('Continue shopping',()=>{
-    before(() => {
-        cy.login('standard_user', 'secret_sauce')
-      })
+  it('Continue shopping',()=>{
       it('Continue Shoping',()=>{
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
         cy.get('#shopping_cart_container').click()
@@ -63,4 +57,6 @@ describe('Continue shopping',()=>{
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
         cy.get('.shopping_cart_badge').should('have.text','1')
       }) 
-})
+    })
+  })
+}) 
