@@ -3,15 +3,13 @@ describe('Swag Labs tests',()=>{
     cy.login('standard_user','secret_sauce')
   })
     it('Error wih no data',()=>{
-        cy.login('standard_user','secret_sauce')
         cy.get('.shopping_cart_link').click()
         cy.get('[data-test="checkout"]').click()
         cy.get('[data-test="continue"]').click()
         cy.get('.error-message-container').should('have.text','Error: First Name is required');
     })    
 
-    it('Successful shopping flow',()=>{
-        cy.login('standard_user','secret_sauce')  
+    it('Successful shopping flow',()=>{  
         cy.get('#shopping_cart_container').click()
         cy.get('.cart_quantity').should('not.exist')
         cy.get('[data-test="continue-shopping"]').click()
@@ -49,7 +47,6 @@ it('Removing items from bag',()=>{
         cy.get('[data-test="remove-sauce-labs-backpack"]').click()
         cy.get('.shopping_cart_badge').should('not.exist')
       })
-  it('Continue shopping',()=>{
       it('Continue Shoping',()=>{
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
         cy.get('#shopping_cart_container').click()
@@ -57,6 +54,5 @@ it('Removing items from bag',()=>{
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
         cy.get('.shopping_cart_badge').should('have.text','1')
       }) 
-    })
   })
 }) 
