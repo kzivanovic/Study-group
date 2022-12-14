@@ -11,5 +11,11 @@ export class LandingPage {
     get loginButton(){
         return cy.get('[data-test="login-button"]');
     }
+    login(username,password){
+        this.username.type(username)
+        this.password.type(password)
+        this.loginButton.click()  
+
+    }
 }
 export default new LandingPage ();
