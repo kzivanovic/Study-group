@@ -25,9 +25,9 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
  
-
+import LandingPage from './page-objects/Landing-page.js'
 Cypress.Commands.add('login',(username, password)=>{
-    cy.visit('https://www.saucedemo.com/')
+    LandingPage.openPage()
     cy.get('[data-test="username"]').type(username)
     cy.get('[data-test="password"]').type(password)
     cy.get('[data-test="login-button"]').click()
