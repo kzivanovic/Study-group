@@ -11,6 +11,16 @@ describe('Tests for demoqa',()=>{
     cy.get('#userName').type('Katarina')
     cy.get('#userEmail').type('test@test.com')
     cy.get('#submit').click()
-    cy.get('.border')
+    cy.get('.border').should('contain','Name')
+    cy.get('.border').should('contain','Email')
+   })
+   it(('Interact with Checkbox'),()=>{
+    cy.get(':nth-child(1) > .element-list > .menu-list > #item-1').click()
+    cy.get('.rct-checkbox > .rct-icon').click()
+    cy.get('#result').should('be.visible')
+   })
+   it(('Interact with Radio Buttons'),()=>{
+    cy.get(':nth-child(1) > .element-list > .menu-list > #item-2').click()
+    cy.get('[id="yesRadio"]').click({force:true})
    })
 })
